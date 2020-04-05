@@ -1,8 +1,12 @@
-//import * as React from 'react'
-import React from 'react'
+import React from 'react';
+import {useAsync} from 'react-async-hook';
+import fetchRemoteMessage from './fetchRemoteMessage';
 
 export default function Hello() {
+  const result = useAsync(fetchRemoteMessage, ['RemoteHello1'])
   return <div>
-    <h1>Hello React</h1>
-  </div>
+    {result?.loading && <div>Loading...</div>}
+    {result?.error && <div>Error: {result?.error?.message}</div>}
+    {result?.result !== undefined && <div>Hello, {result?.result}</div>}
+  </div>;
 };
