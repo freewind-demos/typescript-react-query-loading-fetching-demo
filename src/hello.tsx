@@ -1,12 +1,14 @@
 import React from 'react';
-import {useAsync} from 'react-async-hook';
+import {useQuery} from 'react-query'
 import fetchRemoteMessage from './fetchRemoteMessage';
 
 export default function Hello() {
-  const result = useAsync(fetchRemoteMessage, ['RemoteHello1'])
+  const {isLoading, error, data} = useQuery('fetchRemoteMessage', () => fetchRemoteMessage('RemoteHello1'), {
+    retry: false
+  })
   return <div>
-    {result?.loading && <div>Loading...</div>}
-    {result?.error && <div>Error: {result?.error?.message}</div>}
-    {result?.result !== undefined && <div>Hello, {result?.result}</div>}
+    {isLoading && <div>Loading...</div>}
+    {error && <div>Error: {error?.message}</div>}
+    {data !== undefined && <div>Hello, {data}</div>}
   </div>;
 };

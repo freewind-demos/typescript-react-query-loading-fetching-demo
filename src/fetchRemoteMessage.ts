@@ -7,8 +7,9 @@ async function wait(seconds: number): Promise<void> {
 }
 
 export default async function fetchRemoteMessage(from: string): Promise<string> {
-  await wait(3);
+  await wait(1);
   const random = Math.floor(Math.random() * 10);
+  console.log("### random", random);
   if (random % 2 === 0) {
     return `hello-from-remote(${from}, random: ${random})`;
   } else {
