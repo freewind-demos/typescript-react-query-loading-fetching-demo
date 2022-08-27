@@ -12,7 +12,7 @@ TypeScript "react-query" Loading Fetching Demo
 - 由于缓存机制，导致`status`的值不能真实表达当前状态，而是缓存影响下的状态；
 - remove会去除之前数据，但页面已经显示的值不会变，直到再次调用refetch;
 - 就算enabled为false时，也可以调用fetch强行去取；
-
+- 如果缓存key变成了一个新值，则会重新请求；如果变成了某个旧值，则会从缓存中取
 
 ```
 npm install

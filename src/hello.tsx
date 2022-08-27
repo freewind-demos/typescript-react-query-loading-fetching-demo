@@ -15,9 +15,10 @@ function showData(data: any | undefined): React.ReactNode {
 }
 
 export default function Hello() {
+    const [seed, setSeed] = useState(0)
     const [enabled, setEnabled] = useState(false);
     const [remoteSuccess, setRemoteSuccess] = useState(true)
-    const fetch = useQuery(['fetchRemoteMessage', remoteSuccess], async () => fetchRemoteMessage('RemoteHello1', remoteSuccess), {
+    const fetch = useQuery(['fetchRemoteMessage', seed, remoteSuccess], async () => fetchRemoteMessage('RemoteHello1', remoteSuccess), {
         enabled,
         retry: false
     })
@@ -25,6 +26,13 @@ export default function Hello() {
         <div>
             <button type={'button'} onClick={() => setEnabled(v => !v)}>Enable/Disabled (current: {String(enabled)})
             </button>
+        </div>
+        <div>
+            Seed ({seed})
+            <button type={'button'} onClick={() => setSeed(n => n + 1)}>+1</button>
+            <button type={'button'} onClick={() => setSeed(n => n - 1)}>-1</button>
+        </div>
+        <div>
             <button type={'button'} onClick={() => {
                 setRemoteSuccess(true);
                 fetch.refetch()
