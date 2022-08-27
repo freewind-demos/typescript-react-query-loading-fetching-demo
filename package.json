@@ -1,13 +1,14 @@
 {
   "scripts": {
-    "demo": "webpack-dev-server --open"
+    "start": "webpack-dev-server --open"
   },
   "dependencies": {
     "react": "16.9.0",
     "react-dom": "16.9.0",
-    "react-query": "2.4.14"
+    "react-query": "3.39.2"
   },
   "devDependencies": {
+    "@icon-park/react": "^1.4.2",
     "@types/node": "12.7.2",
     "@types/react": "16.9.2",
     "@types/react-dom": "16.9.0",
